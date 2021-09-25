@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="Web programming first lab" name="description">
+    <meta content="Сагайдак Алина Алексеевна" name="author">
+
+    <title>web1</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body>
+
+<header>
+    <span id="author">
+        Сагайдак Алина Алексеевна, P3211, вариант-11016
+    </span>
+</header>
+
+<table class="page_table">
+    <tr>
+        <td>
+            <img src="areas.png" class="page_table" alt="" draggable="false">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p class="page_table" id="enter-text">Enter values:</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table class="vars_table">
+                <tr>
+                    <td colspan="2">
+                        <p class="variable">X=
+                            <label>
+                                <input type="radio" value="-5" name="radio_buttons">
+                            </label>-5
+                            <label>
+                                <input type="radio" value="-4" name="radio_buttons">
+                            </label>-4
+                            <label>
+                                <input type="radio" value="-3" name="radio_buttons">
+                            </label>-3
+                            <label>
+                                <input type="radio" value="-2" name="radio_buttons">
+                            </label>-2
+                            <label>
+                                <input type="radio" value="-1" checked name="radio_buttons">
+                            </label>-1
+                            <label>
+                                <input type="radio" value="0" name="radio_buttons">
+                            </label>0
+                            <label>
+                                <input type="radio" value="1" name="radio_buttons">
+                            </label>1
+                            <label>
+                                <input type="radio" value="2" name="radio_buttons">
+                            </label>2
+                            <label>
+                                <input type="radio" value="3" name="radio_buttons">
+                            </label>3
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <p class="variable">Y=
+                            <label for="y"></label><input maxlength="12" size="20" id="Y" type="text" placeholder="Enter Y (-5...3):">
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="variable">R=
+                            <label for="r"></label><input maxlength="12" size="20" id="R" type="text" placeholder="Enter R (2...5):">
+                        </p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <button id="button" type="submit">Submit</button>
+                    </td>
+                    <td>
+                        <button id="cleaning_button" type="submit">Clean</button>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    <tr>
+        <td>
+            <table class="result_table">
+                <tr>
+                    <th class="variable">X</th>
+                    <th class="variable">Y</th>
+                    <th class="variable">R</th>
+                    <th>Result</th>
+                    <th>Submit time</th>
+                    <th>Calculation time</th>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<script src="/script.js"></script>
+</body>
+
+<!--&lt;!&ndash;<script > function submit() {&ndash;&gt;-->
+<!--&lt;!&ndash;    if (checkY() && checkR()) {&ndash;&gt;-->
+<!--&lt;!&ndash;        let params = "x="&ndash;&gt;-->
+<!--&lt;!&ndash;        document.getElementsByName("radio_buttons").forEach(x => {&ndash;&gt;-->
+<!--&lt;!&ndash;            if (x.checked)&ndash;&gt;-->
+<!--&lt;!&ndash;                params += x.value&ndash;&gt;-->
+<!--&lt;!&ndash;        })&ndash;&gt;-->
+<!--&lt;!&ndash;        params += "&y=" + parseFloat(document.getElementById("Y").value.substring(0, 12).replace(',', '.'))&ndash;&gt;-->
+<!--&lt;!&ndash;        params += "&r=" + parseFloat(document.getElementById("R").value.substring(0, 12).replace(',', '.'));&ndash;&gt;-->
+<!--&lt;!&ndash;        send_request('POST', 'calculator.php', params)&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+
+<!--&lt;!&ndash;function clear() {&ndash;&gt;-->
+<!--&lt;!&ndash;    send_request('POST', 'clear.php');&ndash;&gt;-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+
+<!--&lt;!&ndash;function checkY() {&ndash;&gt;-->
+<!--&lt;!&ndash;    let y = document.getElementById("Y");&ndash;&gt;-->
+<!--&lt;!&ndash;    if (y.value.trim() === "") {&ndash;&gt;-->
+<!--&lt;!&ndash;        alert("Поле Y должно быть заполнено");&ndash;&gt;-->
+<!--&lt;!&ndash;        return false;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    y.value = y.value.substring(0, 12).replace(',', '.');&ndash;&gt;-->
+<!--&lt;!&ndash;    if (!(y.value && !isNaN(y.value))) {&ndash;&gt;-->
+<!--&lt;!&ndash;        alert("Y должен быть числом!");&ndash;&gt;-->
+<!--&lt;!&ndash;        return false;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    if (!((y.value >= -5) && (y.value <= 3))) {&ndash;&gt;-->
+<!--&lt;!&ndash;        alert("Y должен принадлежать промежутку: (-5; 3)!");&ndash;&gt;-->
+<!--&lt;!&ndash;        return false;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    return true;&ndash;&gt;-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+<!--&lt;!&ndash;function checkR() {&ndash;&gt;-->
+<!--&lt;!&ndash;    let r = document.getElementById("R");&ndash;&gt;-->
+<!--&lt;!&ndash;    if (r.value.trim() === "") {&ndash;&gt;-->
+<!--&lt;!&ndash;        alert("Поле R должно быть заполнено");&ndash;&gt;-->
+<!--&lt;!&ndash;        return false;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    r.value = r.value.substring(0, 12).replace(',', '.');&ndash;&gt;-->
+<!--&lt;!&ndash;    if (!(r.value && !isNaN(r.value))) {&ndash;&gt;-->
+<!--&lt;!&ndash;        alert("R должен быть числом!");&ndash;&gt;-->
+<!--&lt;!&ndash;        return false;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    if (!((r.value >= 2) && (r.value <= 5))) {&ndash;&gt;-->
+<!--&lt;!&ndash;        alert("R должен принадлежать промежутку: (2; 5)!");&ndash;&gt;-->
+<!--&lt;!&ndash;        return false;&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;    return true;&ndash;&gt;-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+
+<!--// function ajax(url, method, functionName, dataArray) {-->
+<!--//     let xhttp = new XMLHttpRequest();-->
+<!--//     xhttp.open(method, url, true);-->
+<!--//     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");-->
+<!--//     xhttp.send(dataArray);-->
+<!--//     xhttp.onreadystatechange = () => {-->
+<!--//         if (this.readyState == 4 && this.status == 200) {-->
+<!--//             functionName(this);-->
+<!--//         }-->
+<!--//     }-->
+<!--// }-->
+
+<!--&lt;!&ndash;function send_request(method, url, params = '') {&ndash;&gt;-->
+<!--&lt;!&ndash;    new Promise((resolve, reject) => {&ndash;&gt;-->
+<!--&lt;!&ndash;        let xhr = new XMLHttpRequest()&ndash;&gt;-->
+<!--&lt;!&ndash;        xhr.open(method, url, true)&ndash;&gt;-->
+<!--&lt;!&ndash;        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');&ndash;&gt;-->
+<!--&lt;!&ndash;        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');&ndash;&gt;-->
+<!--&lt;!&ndash;        xhr.onload = () => {&ndash;&gt;-->
+<!--&lt;!&ndash;            if (xhr.status >= 400)&ndash;&gt;-->
+<!--&lt;!&ndash;                reject()&ndash;&gt;-->
+<!--&lt;!&ndash;            else&ndash;&gt;-->
+<!--&lt;!&ndash;                resolve(xhr)&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        xhr.onerror = () => {&ndash;&gt;-->
+<!--&lt;!&ndash;            reject(xhr)&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        xhr.send(params);&ndash;&gt;-->
+<!--&lt;!&ndash;    }).then(xhr => {&ndash;&gt;-->
+<!--&lt;!&ndash;        let response = xhr.responseText&ndash;&gt;-->
+<!--&lt;!&ndash;        if (response !== "")&ndash;&gt;-->
+<!--&lt;!&ndash;            document.querySelector(".result_table").innerHTML = response&ndash;&gt;-->
+<!--&lt;!&ndash;        else&ndash;&gt;-->
+<!--&lt;!&ndash;            alert("Error in the request")&ndash;&gt;-->
+<!--&lt;!&ndash;    }).catch((xhr) => {&ndash;&gt;-->
+<!--&lt;!&ndash;        if (xhr.status === 400)&ndash;&gt;-->
+<!--&lt;!&ndash;            alert("Error in the request")&ndash;&gt;-->
+<!--&lt;!&ndash;        else&ndash;&gt;-->
+<!--&lt;!&ndash;            alert("Unknown Error")&ndash;&gt;-->
+<!--&lt;!&ndash;    })&ndash;&gt;-->
+<!--&lt;!&ndash;}&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;document.getElementById("button").addEventListener("click", submit);&ndash;&gt;-->
+<!--&lt;!&ndash;document.getElementById("cleaning_button").addEventListener("click", clear);&ndash;&gt;-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+<style>
+    :root {
+        --primary-color: #f5f5f5;
+        --background-color: #181818;
+        --meowmeow-color: #f7d5a2;
+        --tasty-color: #f1962d;
+        --bananas-color: #e78269;
+        --scroll-bar: #e6ddb0;
+
+        --пивко-color: #c9a532;
+        --forbeer-color: #E8DD1AFF;
+
+
+    }
+
+    body {
+        background-image: url(пивко.gif);
+        background-size: 100%;
+        background-position-y: 95%;
+        background-repeat: repeat;
+        background-color: var(--tasty-color);
+        text-align: center;
+        font-family: sans-serif; /*наследование (шрифт)*/
+        margin: 0;
+        padding: 0;
+        color: var(--primary-color);
+    }
+
+    header {
+        background-color: var(--background-color);
+        padding: 10px;
+        border: 4px dotted var(--tasty-color);
+        font-size: 100%;
+
+    }
+
+    td img {
+        border: 3px solid black;
+    }
+
+    #author { /*селектор идентификаторов*/
+        font-family: sans-serif;
+        font-weight: bolder;
+        font-size: 200%;
+        position: relative;
+        top:3px;
+        color: var(--primary-color);
+    }
+
+    #enter-text {
+        font-family: sans-serif; /* каскадирование */
+        font-size: 200%;
+        color: var(--background-color);
+
+    }
+
+    th.variable::after { /*селектор псевдоэлементов*/
+        content: " (var)";
+    }
+
+    button { /*селектор  элементов*/
+        color: var(--background-color);
+        text-align: center;
+        padding: 1% 5%;
+        margin: 2%;
+        background: var(--primary-color);
+        border: outset;
+        border-color: var(--bananas-color);
+        cursor: pointer;
+        border-radius: 500px;
+    }
+
+    input {
+        color: var(--background-color);
+        outline: dotted var(--tasty-color);
+        border-width: thick;
+        border-style: outset;
+        border-color: var(--bananas-color);
+        border-radius: 500px;
+        font-size: 80%;
+    }
+
+    .page_table {
+        margin: auto;
+        color: var(--background-color);
+    }
+
+    .result_table { /* селектор классов */
+        width: 100%;
+        font-size: 100%;
+        border: solid;
+        border-color: var(--tasty-color);
+        border-radius: 5px;
+        text-align: center;
+        font-style: normal;
+        color: var(--primary-color);
+        background-color: var(--background-color);
+        border-spacing: 15px;
+    }
+
+    .vars_table {
+        margin: auto;
+        color: var(--background-color);
+        font-weight: 600;
+        font-size: 110%;
+    }
+
+    #enter-text {
+        color: var(--background-color);
+        font-size: 150%;
+        font-style: italic;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    .result_table {
+        font-style: oblique;
+        columns: var(--primary-color);
+    }
+    ::-webkit-scrollbar{
+        width: 15px;
+    }
+    ::-webkit-scrollbar-track{
+        background-color: saddlebrown;
+    }
+    ::-webkit-scrollbar-thumb{
+        background: linear-gradient(to bottom,white,orange);
+        border-radius: 8px;
+        border: 3px solid black;
+    }
+</style>
+</html>

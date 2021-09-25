@@ -1,0 +1,107 @@
+:root {
+    --primary-color: #f5f5f5;
+    --background-color: #181818;
+	--meowmeow-color: #f7d5a2;
+	--tasty-color: #9adef3;
+	--bananas-color: #e78269;
+	
+}
+body {
+    background-image: url(image_69.gif);
+    background-size: 25%;
+	background-position-y: 95%;
+    background-repeat: repeat;
+    background-color: var(--tasty-color);
+    text-align: center;
+    font-family: sans-serif; /*наследование (шрифт)*/
+    margin: 0;
+    padding: 0;
+    color: var(--primary-color);
+}
+header {
+    background-color: var(--background-color);
+    padding: 10px ;
+	border: 4px dotted var(--tasty-color);
+	font-size: 100%;
+	
+}
+
+td img {
+	border: 3px solid black;
+}
+
+#author { /*селектор идентификаторов*/
+    font-family: sans-serif;
+    font-weight: bolder;
+    font-size: 200%;
+    position: relative;
+    color: var(--primary-color);
+}
+
+#enter-text {
+    font-family: sans-serif; /* каскадирование */
+    font-size: 200%;
+    color: var(--background-color);
+
+}
+
+th.variable::after { /*селектор псевдоэлементов*/
+    content: " (var)";
+}
+
+button { /*селектор  элементов*/
+    color: var(--background-color);
+    text-align: center;
+    padding: 1% 5%;
+    margin: 2%;
+    background: var(--primary-color);
+    border: outset;
+    border-color: var(--bananas-color);
+    cursor: pointer;
+    border-radius: 500px;
+}
+
+input {
+    color: var(--background-color);
+    border-width: thick;
+    border-style: outset;
+    border-color: var(--bananas-color);
+    border-radius: 500px;
+    font-size: 80%;
+}
+
+.page_table {
+    margin: auto;
+	color: var(--background-color);
+}
+
+.result_table { /* селектор классов */
+    width: 100%;
+    font-size: 100%;
+    border: solid;
+    border-color: var(--tasty-color);
+    border-radius: 5px;
+    text-align: center;
+    font-style: normal;
+    color: var(--primary-color);
+    background-color: var(--background-color);
+    border-spacing: 15px;
+}
+
+.vars_table {
+    margin: auto;
+	color: var(--background-color);
+	font-weight: 600;
+	font-size: 110%;
+}
+#enter-text{
+	color: var(--background-color);
+	font-size: 150%;
+	font-style: italic;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.result_table{
+	font-style: oblique;
+	columns: var(--primary-color);
+}
