@@ -48,6 +48,9 @@ td img {
 th.variable::after { /*селектор псевдоэлементов*/
     content: " (var)";
 }
+td{
+    color: white;
+}
 
 button { /*селектор  элементов*/
     color: var(--background-color);

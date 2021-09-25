@@ -1,6 +1,9 @@
-
 function submit() {
-    if (checkY() && checkR()) {
+    wrongFieldX.textContent = "";
+    wrongFieldY.textContent = "";
+    wrongFieldR.textContent = "";
+
+    if (checkY() & checkR()) {
         let params = "x="
         document.getElementsByName("radio_buttons").forEach(x => {
             if (x.checked)
@@ -13,55 +16,48 @@ function submit() {
 }
 
 function clear() {
+    wrongFieldX.textContent = "";
+    wrongFieldY.textContent = "";
+    wrongFieldR.textContent = "";
+
     send_request('POST', 'clear.php');
 }
 
 function checkY() {
     let y = document.getElementById("Y");
     if (y.value.trim() === "") {
-        alert("Поле Y должно быть заполнено");
+        wrongFieldY.textContent = "Поле Y должно быть заполнено";
         return false;
     }
     y.value = y.value.substring(0, 12).replace(',', '.');
     if (!(y.value && !isNaN(y.value))) {
-        alert("Y должен быть числом!");
+        wrongFieldY.textContent = "Y должен быть числом!";
         return false;
     }
     if (!((y.value >= -5) && (y.value <= 3))) {
-        alert("Y должен принадлежать промежутку: (-5; 3)!");
-        return false;
-    }
-    return true;
-}
-function checkR() {
-    let r = document.getElementById("R");
-    if (r.value.trim() === "") {
-        alert("Поле R должно быть заполнено");
-        return false;
-    }
-    r.value = r.value.substring(0, 12).replace(',', '.');
-    if (!(r.value && !isNaN(r.value))) {
-        alert("R должен быть числом!");
-        return false;
-    }
-    if (!((r.value >= 2) && (r.value <= 5))) {
-        alert("R должен принадлежать промежутку: (2; 5)!");
+        wrongFieldY.textContent = "Y должен принадлежать промежутку: (-5; 3)!";
         return false;
     }
     return true;
 }
 
-// function ajax(url, method, functionName, dataArray) {
-//     let xhttp = new XMLHttpRequest();
-//     xhttp.open(method, url, true);
-//     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//     xhttp.send(dataArray);
-//     xhttp.onreadystatechange = () => {
-//         if (this.readyState == 4 && this.status == 200) {
-//             functionName(this);
-//         }
-//     }
-// }
+function checkR() {
+    let r = document.getElementById("R");
+    if (r.value.trim() === "") {
+        wrongFieldR.textContent = "Поле R должно быть заполнено";
+        return false;
+    }
+    r.value = r.value.substring(0, 12).replace(',', '.');
+    if (!(r.value && !isNaN(r.value))) {
+        wrongFieldR.textContent = "R должен быть числом!";
+        return false;
+    }
+    if (!((r.value >= 2) && (r.value <= 5))) {
+        wrongFieldR.textContent = "R должен принадлежать промежутку: (2; 5)!";
+        return false;
+    }
+    return true;
+}
 
 function send_request(method, url, params = '') {
     new Promise((resolve, reject) => {
@@ -80,11 +76,29 @@ function send_request(method, url, params = '') {
         }
         xhr.send(params);
     }).then(xhr => {
-        let response = xhr.responseText
-        if (response !== "")
-            document.querySelector(".result_table").innerHTML = response
-        else
-            alert("Error in the request")
+        $("#result_table tr:gt(0)").remove();
+        let par = xhr.responseText;
+        console.log(par)
+        if (par !== "remove") {
+            let result = JSON.parse(xhr.responseText);
+
+            for (let i in result.response) {
+                let newRow = '<tr>';
+                newRow += '<th class="result_table_text">' + result.response[i].xval + '</th>';
+                newRow += '<th class="result_table_text">' + result.response[i].yval + '</th>';
+                newRow += '<th class="result_table_text">' + result.response[i].rval + '</td>';
+                if (result.response[i].out === "True") {
+                    newRow += '<th><div style="color:lime">' + result.response[i].out + '</div></td>';
+                } else {
+                    newRow += '<td><div style="color:red">' + result.response[i].out + '</div></td>';
+                }
+                newRow += '<td class="result_table_text">' + result.response[i].submitTime + '</td>';
+                newRow += '<td class="result_table_text">' + result.response[i].calculationTime + '</td>';
+                newRow += '</tr>';
+                $('#result_table').append(newRow);
+            }
+        }
+        // $('#result_table tr:last').after(response);
     }).catch((xhr) => {
         if (xhr.status === 400)
             alert("Error in the request")
@@ -96,3 +110,6 @@ function send_request(method, url, params = '') {
 
 document.getElementById("button").addEventListener("click", submit);
 document.getElementById("cleaning_button").addEventListener("click", clear);
+let wrongFieldX = document.getElementById("wrong_field_X");
+let wrongFieldY = document.getElementById("wrong_field_Y");
+let wrongFieldR = document.getElementById("wrong_field_R");

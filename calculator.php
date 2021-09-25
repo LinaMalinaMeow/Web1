@@ -24,17 +24,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $isValid = false;
 //    if (strlen($y) > $maximum || strlen($x) > $maximum || strlen($r) > $maximum)
 //        $isValid = false;
-    if (strlen($y) > $maximum){
-        $y = substr($y,0,11);
+    if (strlen($y) > $maximum) {
+        $y = substr($y, 0, 11);
     }
-    if (strlen($r) > $maximum){
-        $r = substr($r,0,11);
+    if (strlen($r) > $maximum) {
+        $r = substr($r, 0, 11);
     }
-    if (strlen($rStr) > $maximum){
-        $rStr = substr($rStr,0,11);
+    if (strlen($rStr) > $maximum) {
+        $rStr = substr($rStr, 0, 11);
     }
-    if (strlen($yStr) > $maximum){
-        $yStr = substr($yStr,0,11);
+    if (strlen($yStr) > $maximum) {
+        $yStr = substr($yStr, 0, 11);
     }
     if ($x < -5 || $x > 3)
         $isValid = false;
@@ -47,39 +47,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
-
-    if ((($x <= $r) && ($x >= 0) && ($y >= 0) && ($y <= $r) && ($x + 2 * $y >= $r)) ||
-        (($x <= $r / 2) && ($x >= 0) && ($y <= 0) && ($y >= -$r / 2)
-            || (($x <= 0) && ($x >= -$r) && ($y <= 0) && ($y >= -$r / 2))
-        )
-    ) {
-        $out = "<span style='color: lime'>True</span>";
+    if ((($y >= 0) && ($x >= 0) && ((pow($x, 2) + (pow($y, 2))) <= pow($r, 2))) ||
+        (($y <= 0) && ($x >= 0) && ($y >= (-$r / 2 + $x))) || (($y <= 0) && ($x <= 0) && ($x >= $r) && ($y >= -$r / 2))) {
+        $out = "True";
     } else {
-        $out = "<span style='color: red'>False</span>";
+        $out = "False";
     }
 
     $calc_time = microtime(true) - $start;
-    $answer = array($xStr, $yStr, $rStr, $out, $now, $calc_time);
+    $answer = array($xStr, $yStr, $rStr, $out, $now, number_format($calc_time, 10, ".", "") . " sec");
     array_push($_SESSION['data'], $answer);
 }
+$result_json = "";
+foreach ($_SESSION['data'] as $resp) {
+    $jsonData = '{' .
+        "\"xval\":\"$resp[0]\"," .
+        "\"yval\":\"$resp[1]\"," .
+        "\"rval\":\"$resp[2]\"," .
+        "\"out\": \"$resp[3]\"," .
+        "\"submitTime\":\"$resp[4]\"," .
+        "\"calculationTime\":\"$resp[5]\"" .
+        "}";
+    $result_json = $result_json . $jsonData . ',';
+}
+$result_json = substr($result_json, 0, -1);
+echo '{' . "\"response\":[" . $result_json . ']}';
 ?>
-<table align="center" class="result_table">
-    <tr>
-        <th class="variable">X</th>
-        <th class="variable">Y</th>
-        <th class="variable">R</th>
-        <th>Result</th>
-        <th>Submit time</th>
-        <th>Calculation time</th>
-    </tr>
-    <?php foreach ($_SESSION['data'] as $word) { ?>
-        <tr>
-            <td><?php echo $word[0] ?></td>
-            <td><?php echo $word[1] ?></td>
-            <td><?php echo $word[2] ?></td>
-            <td><?php echo $word[3] ?></td>
-            <td><?php echo $word[4] ?></td>
-            <td><?php echo number_format($word[5], 10, ".", "") . " sec" ?></td>
-        </tr>
-    <?php } ?>
-</table>
